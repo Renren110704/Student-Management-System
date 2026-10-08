@@ -27,7 +27,7 @@ function App() {
 
   const fetchStudents = () => {
     axios
-      .get("http://localhost:5000/students")
+      .get("https://student-management-system-ooqp.vercel.app/students")
       .then((response) => {
         setStudents(response.data);
       })
@@ -41,10 +41,10 @@ function App() {
   }, []);
 
   const addStudent = (event) => {
-    event.preventDefault
+    event.preventDefault()
 
     axios
-      .post("http://localhost:5000/students", {
+      .post("https://student-management-system-ooqp.vercel.app/students", {
         name: name,
         course: course,
         age: age
@@ -62,7 +62,7 @@ function App() {
 
   const updateStudent = () => {
     axios
-      .put(`http://localhost:5000/students/${edit}`, {
+      .put(`https://student-management-system-ooqp.vercel.app/students/${edit}`, {
         name: name,
         course: course,
         age: age
@@ -81,7 +81,7 @@ function App() {
 
   const deleteStudent = (id) => {
     axios
-      .delete(`http://localhost:5000/students/${id}`)
+      .delete(`https://student-management-system-ooqp.vercel.app/students/${id}`)
       .then(() => {
         fetchStudents();
       })
