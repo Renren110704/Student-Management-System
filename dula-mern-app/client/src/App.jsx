@@ -27,7 +27,7 @@ function App() {
 
   const fetchStudents = () => {
     axios
-      .get("http://localhost:5000/students")
+      .get("https://student-management-system-6b97.vercel.app")
       .then((response) => {
         setStudents(response.data);
       })
