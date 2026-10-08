@@ -24,9 +24,12 @@ app.get("/", (req, res) => {
 });
 
 app.get("/students", async (req, res) => {
-    const students = await Student.find();
-
-    res.json(students);
+    try {
+        const students = await Student.find();
+        res.json(students);
+    } catch (error) {
+        res.status(500).json({ message: "Failed to fetch students" });
+    }
 });
 
 app.post("/students", async (req, res) => {

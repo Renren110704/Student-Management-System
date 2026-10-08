@@ -9,14 +9,19 @@ function App() {
   const [course, setCourse] = useState("");
   const [age, setAge] = useState("");
 
-  useEffect(() => {
-
+  const fetchStudents = () => {
     axios
       .get("http://localhost:5000/students")
       .then((response) => {
         setStudents(response.data);
+      })
+      .catch((error) => {
+        console.log("Error fetching students:", error);
       });
+  }
 
+  useEffect(() => {
+    fetchStudents();
   }, []);
 
   const addStudent = (event) => {
