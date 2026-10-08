@@ -48,6 +48,25 @@ app.post("/students", async (req, res) => {
     }
 })
 
+app.put("/students/:id", async (req, res) => {
+    try {
+        const id = req.params.id;
+        const { name, course, age } = req.body;
+        const updatedStudent = await Student.findByIdAndUpdate(
+            id,
+            { name: name, course: course, age: age },
+            { new: true }
+        );
+        if (!updatedStudent) {
+            return res.status(404).json({ message: "Student not found" });
+        }
+        res.json(updatedStudent);
+    } catch (error) {
+        console.log("Error updating student", error);
+        res.status(500).json({ message: "Failed to update student" });
+    }
+});
+
 app.listen(5000, () => {
     console.log("Server running on port 5000");
 });
