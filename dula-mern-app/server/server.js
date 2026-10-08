@@ -67,6 +67,21 @@ app.put("/students/:id", async (req, res) => {
     }
 });
 
+app.delete("/students/:id", async (req, res) => {
+    try {
+        const id = req.params.id;
+        const deletedStudent = await Student.findByIdAndDelete(id);
+
+        if (!deletedStudent) {
+            return res.status(404).json({ message: "Student not found" });
+        }
+        res.json({ message: "Student deleted successfully" })
+    } catch (error) {
+        console.log("Error deleting student:", error);
+        res.status(500).json({ message: "Failed to delete student" })
+    }
+})
+
 app.listen(5000, () => {
     console.log("Server running on port 5000");
 });

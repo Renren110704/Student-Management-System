@@ -79,6 +79,17 @@ function App() {
       });
   }
 
+  const deleteStudent = (id) => {
+    axios
+      .delete(`http://localhost:5000/students/${id}`)
+      .then(() => {
+        fetchStudents();
+      })
+      .catch((error) => {
+        console.log("Error deleting student:", error);
+      });
+  }
+
   return (
     <div>
       <h1>Student Management System</h1>
@@ -106,6 +117,7 @@ function App() {
           <p>Course: {student.course}</p>
           <p>Age: {student.age}</p>
           <button onClick={() => startEdit(student)}>Edit</button>
+          <button onClick={() => deleteStudent(student._id)}>Delete</button>
         </div>
       ))}
 
